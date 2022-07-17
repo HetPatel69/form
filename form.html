@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>200103101026 - Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #top {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #togglemode {
+            align-self: flex-end;
+            background-color: #2596be;
+            padding: 4px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #777777;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none !important;
+            box-shadow: 0 0 5px #2596be;
+            box-shadow: 0 0 15px #2596be;
+        }
+
+        select option {
+            margin: 40px;
+            /* background: #2596be; */
+            /* color: #fff; */
+            text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+            margin: 5px;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        #footer {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+        }
+
+        input[type=submit] {
+            background-color: #2596be!important;
+            color: black;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #2596ef!important;
+        }
+        input[type=date]{
+            height: 100%;
+        }
+        #container {
+            margin: auto;
+            width: 90%;
+            border-radius: 5px;
+            background-color: #E7E9EB;
+            padding: 20px;
+            padding-bottom: 10px;
+        }
+
+        .col-25 {
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        .row {
+            display: flex;
+            margin: 10px 0px;
+        }
+
+        @media screen and (max-width: 700px) {
+            #container{
+                width: 100%;
+            }
+
+            .col-25,
+            .col-75{
+                width: 100%;
+                margin-top: 0;
+            }
+
+            .row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="top">
+            <button id="togglemode" onclick="togglemode()">
+                Dark-Mode
+            </button>
+        </div>
+        <form >
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">First Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="firstname" placeholder="Enter Your First Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Last Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lname" name="lastname" placeholder="Enter Your Last Name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Enrollment No.</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="enrollmentno" name="enrollmentno" placeholder="Enter Your Enrollment Number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Date Of Birth</label>
+                </div>
+                <div class="col-75">
+                    <input type="date" id="dob" name="dob">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Gender</label>
+                </div>
+                <div class="col-75">
+                    <input type="radio" name="gender" id="gender_male"><label for="gender_male">Male</label>
+                    <input type="radio" name="gender" id="gender_female"><label for="gender_female">Female</label>
+                    <input type="radio" name="gender" id="gender_other"><label for="gender_other">Others</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Contact No.</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="contactno" name="contactno" placeholder="Enter Your Contact Number">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="country">Country</label>
+                </div>
+                <div class="col-75">
+                    <select id="country" name="country">
+                        <option value="india">India</option>
+                        <option value="usa">USA</option>
+                        <option value="canada">Canada</option>
+                        <option value="uk">UK</option>
+                        <option value="australia">Australia</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="subject">Subject</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="subject" name="subject" placeholder="Write About The Subject"
+                        style="height:200px"></textarea>
+                </div>
+            </div>
+            <div id="footer">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+    <script>
+
+        function togglemode() {
+            let mode = document.getElementById("togglemode");
+            if (mode.innerText === "Dark-Mode") {
+                mode.innerHTML = "Light-Mode";
+                let all = document.querySelectorAll(".col-25,label");
+                for (let i = 0; i < all.length; i++) {
+                    all[i].style.color = "white";
+                    // all[i].style.backgroundColor = "f2f2f2";
+                }
+                let all1 = document.querySelectorAll("input,select,textarea");
+                for (let i = 0; i < all1.length; i++) {
+                    all1[i].style.color = "white";
+                    all1[i].style.backgroundColor = "#202020";
+                }
+                
+                document.getElementById("container").style.backgroundColor = "#202020";
+                document.body.style.backgroundColor = "black";
+                mode.style.color = "white";
+            }
+            else{
+                mode.innerText = "Dark-Mode";
+                let all = document.querySelectorAll(".col-25,label");
+                for (let i = 0; i < all.length; i++) {
+                    all[i].style.color = "black";
+                    // all[i].style.backgroundColor = "white";
+                }
+                let all1 = document.querySelectorAll("input,select,textarea");
+                for (let i = 0; i < all1.length; i++) {
+                    all1[i].style.color = "black";
+                    all1[i].style.backgroundColor = "white";
+                    // all1[i].style.borderColor = "#777777"
+                }
+                document.getElementById("container").style.backgroundColor = "#E7E9EB";
+                document.body.style.backgroundColor = "white";
+                mode.style.color = "black";
+            }
+        }
+    </script>
+    <script>
+
+    </script>
+</body>
+</html>
